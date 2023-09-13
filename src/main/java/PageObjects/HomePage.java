@@ -17,5 +17,6 @@ public class HomePage {
     public WeatherDataPage navigateToWeatherDataPage() {
         driver.findElement(By.linkText("Weather Data")).click();
         return new WeatherDataPage(driver);
+        
     }
 }

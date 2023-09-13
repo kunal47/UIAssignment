@@ -9,6 +9,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 public class WeatherTest {
     private WebDriver driver;
     private HomePage homePage;
@@ -22,8 +24,10 @@ public class WeatherTest {
     }
 
     @Test
-    public void testWeatherForecast() {
+    public void testWeatherForecast() throws InterruptedException {
         homePage.openPage("https://www.visualcrossing.com");
+       // Thread.sleep(5000);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         weatherDataPage = homePage.navigateToWeatherDataPage();
         weatherDataPage.enterCityAndSearch("Bengaluru"); // Replace with your city name
         Assert.assertTrue(weatherDataPage.isWeatherForecastDisplayed(), "Weather forecast not displayed.");
